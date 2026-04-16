@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | ResQNow Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "india-saffron": "#FF9933",
+                    "india-green": "#138808",
+                    "india-blue": "#000080",
+                    "on-tertiary-container": "#c69b5f",
+                    "on-tertiary-fixed": "#291800",
+                    "on-background": "#191c1d",
+                    "background": "#f8f9fa",
+                    "surface": "#f8f9fa",
+                    "secondary-fixed-dim": "#ffb4ac",
+                    "on-error": "#ffffff",
+                    "outline": "#74777f",
+                    "primary-container": "#1e3a5f",
+                    "on-surface-variant": "#43474e",
+                    "tertiary-fixed-dim": "#edbf7f",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-dim": "#d9dadb",
+                    "secondary": "#b7131a",
+                    "on-secondary-fixed": "#410002",
+                    "surface-variant": "#e1e3e4",
+                    "on-primary-container": "#8aa4cf",
+                    "tertiary-container": "#503300",
+                    "surface-container": "#edeeef",
+                    "primary-fixed-dim": "#adc8f5",
+                    "secondary-container": "#db322f",
+                    "inverse-primary": "#adc8f5",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#341f00",
+                    "on-surface": "#191c1d",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#2d486d",
+                    "on-primary-fixed": "#001c3b",
+                    "secondary-fixed": "#ffdad6",
+                    "primary-fixed": "#d5e3ff",
+                    "on-secondary-fixed-variant": "#93000d",
+                    "outline-variant": "#c4c6cf",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#022448",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffddb2",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary-fixed-variant": "#60410c",
+                    "surface-tint": "#455f87",
+                    "on-secondary-container": "#fffbff",
+                    "inverse-surface": "#2e3132"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-headline { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .login-card-shadow {
+            box-shadow: 0px 12px 32px rgba(25, 28, 29, 0.06);
+        }
+        .inner-glow-btn {
+            box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.1);
+        }
+        .tricolor-border {
+            background: linear-gradient(to right, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%);
+            height: 3px;
+        }
+    </style>
+<link href="{{DATA:IMAGE:IMAGE_9}}" rel="icon" type="image/png"/></head>
+<body class="bg-surface text-on-background min-h-screen flex items-center justify-center p-6 selection:bg-primary-fixed selection:text-on-primary-fixed">
+<main class="w-full max-w-[440px] animate-in fade-in slide-in-from-bottom-4 duration-700">
+<!-- Logo Section -->
+<div class="flex flex-col items-center mb-8">
+<div class="mb-4 bg-surface-container-highest rounded-xl p-3 relative">
+<img alt="ResQNow Logo" class="w-auto h-24" data-alt="Official ResQNow logo featuring a heartbeat pulse line integrated with an ambulance on a road, with the text ResQNow below it." src="https://lh3.googleusercontent.com/aida/ADBb0ugc9C9ZwZ1q-ZoE-E6rqCb0j7SRZmy6JENjq6ZWGkWlp0XfXyqr-Dh0xh8KOg3nfY351anIht4dSZWdcpzRYqkLhwSLwmmDkwp66iBDkdvh7W9PeE7SDxp3rQvomTg6olL3wD8GycxIT89_gIkYgGu27jCST8ZwUwA4geE9lUAYFLZgCY0on6EP2oU2HxFgU5l443HgDowE5gBXDcwjeJshZNVXPkAi9urm07xIgLihytT0WgUDyCMW73eg3M7qnOPHRuuM2v8z2sE"/>
+</div>
+<h1 class="font-headline text-2xl font-bold tracking-tight text-primary">ResQNow</h1>
+<div class="flex items-center gap-2 mt-1">
+<p class="text-on-surface-variant text-sm">Emergency Command Center</p>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<div class="flex items-center gap-1">
+<svg class="w-3.5 h-2.5" viewbox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#138808" height="600" width="900"></rect>
+<rect fill="#fff" height="400" width="900"></rect>
+<rect fill="#f93" height="200" width="900"></rect>
+<circle cx="450" cy="300" fill="none" r="92.5" stroke="#000080" stroke-width="5"></circle>
+<circle cx="450" cy="300" fill="#000080" r="15"></circle>
+<g id="d" transform="translate(450,300)">
+<g id="c">
+<g id="b">
+<g id="a">
+<line stroke="#000080" stroke-width="5" x1="0" x2="0" y1="15" y2="92.5"></line>
+<circle cx="0" cy="92.5" fill="#000080" r="3.5"></circle>
+</g>
+<use transform="rotate(15)" xlink:href="#a"></use>
+</g>
+<use transform="rotate(30)" xlink:href="#b"></use>
+</g>
+<use transform="rotate(60)" xlink:href="#c"></use>
+<use transform="rotate(120)" xlink:href="#c"></use>
+<use transform="rotate(180)" xlink:href="#c"></use>
+<use transform="rotate(240)" xlink:href="#c"></use>
+</g>
+</svg>
+<span class="text-[10px] font-bold text-india-green uppercase tracking-wider">India</span>
+</div>
+</div>
+</div>
+<!-- Login Card -->
+<div class="bg-surface-container-lowest login-card-shadow rounded-xl p-8 md:p-10 relative overflow-hidden border border-outline-variant/10">
+<!-- Indian Flag Themed Accent -->
+<div class="absolute top-0 left-0 w-full tricolor-border"></div>
+<div class="mb-8">
+<h2 class="font-headline text-xl font-bold text-on-surface">Secure Access</h2>
+<p class="text-on-surface-variant text-sm mt-2">Enter your credentials to monitor active units.</p>
+</div>
+<form class="space-y-6">
+<!-- Email Input -->
+<div class="space-y-2">
+<label class="block text-sm font-bold font-label text-on-surface" for="email">Email Address</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] transition-colors group-focus-within:text-india-saffron">mail</span>
+<input class="w-full pl-10 pr-4 py-3 bg-surface-container-low border-0 rounded-lg text-on-surface placeholder:text-outline-variant/60 focus:ring-2 focus:ring-india-saffron/30 transition-all text-sm outline-none" id="email" name="email" placeholder="agent@resqnow.org" required="" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="block text-sm font-bold font-label text-on-surface" for="password">Password</label>
+<a class="text-xs font-semibold text-primary-container hover:text-india-saffron transition-colors" href="#">Forgot Access?</a>
+</div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px] transition-colors group-focus-within:text-india-saffron">lock</span>
+<input class="w-full pl-10 pr-10 py-3 bg-surface-container-low border-0 rounded-lg text-on-surface placeholder:text-outline-variant/60 focus:ring-2 focus:ring-india-saffron/30 transition-all text-sm outline-none" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-india-saffron transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember Me Toggle -->
+<div class="flex items-center space-x-3">
+<div class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" id="remember" type="checkbox"/>
+<div class="w-10 h-5 bg-surface-container-highest rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-india-green"></div>
+</div>
+<label class="text-xs font-medium text-on-surface-variant select-none" for="remember">Maintain session for 24 hours</label>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary text-white font-headline font-bold py-3.5 rounded-lg inner-glow-btn hover:bg-primary-container active:scale-[0.98] transition-all duration-150 flex items-center justify-center gap-2 shadow-sm border-b-2 border-india-green" type="submit">
+<span>Sign In</span>
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</button>
+</form>
+<!-- Secondary Action -->
+<div class="mt-8 pt-8 border-t border-outline-variant/10 text-center">
+<p class="text-sm text-on-surface-variant">
+                    New to the Command Center? 
+                    <a class="font-bold text-india-green hover:text-india-saffron transition-colors underline-offset-4 hover:underline" href="#">Register</a>
+</p>
+</div>
+</div>
+<!-- Footer / Security Meta -->
+<footer class="mt-8 flex flex-col items-center gap-4">
+<div class="flex items-center gap-6 text-outline-variant text-[11px] font-medium tracking-widest uppercase">
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">shield</span> AES-256 ENCRYPTED</span>
+<span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px] text-india-green">history</span> UPTIME 99.9%</span>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-surface-container rounded-full border border-outline-variant/20">
+<svg class="w-4 h-2.5" viewbox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+<rect fill="#138808" height="600" width="900"></rect>
+<rect fill="#fff" height="400" width="900"></rect>
+<rect fill="#f93" height="200" width="900"></rect>
+<circle cx="450" cy="300" fill="none" r="92.5" stroke="#000080" stroke-width="5"></circle>
+</svg>
+<span class="text-[10px] font-bold text-on-surface-variant tracking-tighter">MADE IN INDIA</span>
+</div>
+<p class="text-[10px] text-outline-variant text-center max-w-[280px] leading-relaxed">
+                Authorized access only. Securely hosted in India for regional emergency response operations.
+            </p>
+</div>
+</footer>
+</main>
+</body></html>

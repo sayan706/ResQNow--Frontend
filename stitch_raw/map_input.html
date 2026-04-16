@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-container": "#c69b5f",
+                    "on-tertiary-fixed": "#291800",
+                    "on-background": "#191c1d",
+                    "background": "#f8f9fa",
+                    "surface": "#f8f9fa",
+                    "secondary-fixed-dim": "#ffb4ac",
+                    "on-error": "#ffffff",
+                    "outline": "#74777f",
+                    "primary-container": "#1e3a5f",
+                    "on-surface-variant": "#43474e",
+                    "tertiary-fixed-dim": "#edbf7f",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-container-highest": "#e1e3e4",
+                    "surface-dim": "#d9dadb",
+                    "secondary": "#b7131a",
+                    "on-secondary-fixed": "#410002",
+                    "surface-variant": "#e1e3e4",
+                    "on-primary-container": "#8aa4cf",
+                    "tertiary-container": "#503300",
+                    "surface-container": "#edeeef",
+                    "primary-fixed-dim": "#adc8f5",
+                    "secondary-container": "#db322f",
+                    "inverse-primary": "#adc8f5",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#f8f9fa",
+                    "on-error-container": "#93000a",
+                    "tertiary": "#341f00",
+                    "on-surface": "#191c1d",
+                    "surface-container-low": "#f3f4f5",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#2d486d",
+                    "on-primary-fixed": "#001c3b",
+                    "secondary-fixed": "#ffdad6",
+                    "primary-fixed": "#d5e3ff",
+                    "on-secondary-fixed-variant": "#93000d",
+                    "outline-variant": "#c4c6cf",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#022448",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed": "#ffddb2",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-tertiary-fixed-variant": "#60410c",
+                    "surface-tint": "#455f87",
+                    "on-secondary-container": "#fffbff",
+                    "inverse-surface": "#2e3132"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        .glass-header {
+            background: rgba(30, 58, 95, 0.85);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+<link href="{{DATA:IMAGE:IMAGE_9}}" rel="icon" type="image/png"/></head>
+<body class="bg-surface font-body text-on-surface">
+<!-- SideNavBar Shell -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 flex flex-col py-6 z-50">
+<div class="px-6 mb-10"><img alt="ResQNow Logo" class="h-20 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugc9C9ZwZ1q-ZoE-E6rqCb0j7SRZmy6JENjq6ZWGkWlp0XfXyqr-Dh0xh8KOg3nfY351anIht4dSZWdcpzRYqkLhwSLwmmDkwp66iBDkdvh7W9PeE7SDxp3rQvomTg6olL3wD8GycxIT89_gIkYgGu27jCST8ZwUwA4geE9lUAYFLZgCY0on6EP2oU2HxFgU5l443HgDowE5gBXDcwjeJshZNVXPkAi9urm07xIgLihytT0WgUDyCMW73eg3M7qnOPHRuuM2v8z2sE"/></div>
+<nav class="flex-1 space-y-1">
+<!-- Dashboard Tab -->
+<a class="flex items-center px-6 py-3 text-slate-600 hover:bg-slate-200 transition-all duration-200 ease-in-out font-medium text-[0.875rem]" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- AI Prediction Tab (ACTIVE) -->
+<a class="flex items-center px-6 py-3 bg-white text-[#022448] font-bold rounded-l-none rounded-r-full transition-all duration-200 ease-in-out text-[0.875rem]" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="psychology">psychology</span>
+<span>AI Prediction</span>
+</a>
+<!-- About Tab -->
+<a class="flex items-center px-6 py-3 text-slate-600 hover:bg-slate-200 transition-all duration-200 ease-in-out font-medium text-[0.875rem]" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="info">info</span>
+<span>About</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<a class="flex items-center px-4 py-3 text-slate-600 hover:bg-slate-200 transition-all duration-200 ease-in-out rounded-xl font-medium text-[0.875rem]" href="#">
+<span class="material-symbols-outlined mr-3" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col relative">
+<!-- TopAppBar -->
+<header class="w-full h-16 sticky top-0 z-40 bg-slate-50/85 backdrop-blur-md flex items-center justify-between px-6 shadow-sm">
+<div class="flex items-center gap-4"><img alt="ResQNow Logo" class="h-8 w-auto object-contain mr-2" src="https://lh3.googleusercontent.com/aida/ADBb0ugc9C9ZwZ1q-ZoE-E6rqCb0j7SRZmy6JENjq6ZWGkWlp0XfXyqr-Dh0xh8KOg3nfY351anIht4dSZWdcpzRYqkLhwSLwmmDkwp66iBDkdvh7W9PeE7SDxp3rQvomTg6olL3wD8GycxIT89_gIkYgGu27jCST8ZwUwA4geE9lUAYFLZgCY0on6EP2oU2HxFgU5l443HgDowE5gBXDcwjeJshZNVXPkAi9urm07xIgLihytT0WgUDyCMW73eg3M7qnOPHRuuM2v8z2sE"/>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400 text-lg">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-slate-100 border-none rounded-full text-sm focus:ring-2 focus:ring-primary-container w-64 transition-all" placeholder="Search coordinates or regions..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4"><img alt="ResQNow Logo" class="h-8 w-auto object-contain mr-2" src="https://lh3.googleusercontent.com/aida/ADBb0ugc9C9ZwZ1q-ZoE-E6rqCb0j7SRZmy6JENjq6ZWGkWlp0XfXyqr-Dh0xh8KOg3nfY351anIht4dSZWdcpzRYqkLhwSLwmmDkwp66iBDkdvh7W9PeE7SDxp3rQvomTg6olL3wD8GycxIT89_gIkYgGu27jCST8ZwUwA4geE9lUAYFLZgCY0on6EP2oU2HxFgU5l443HgDowE5gBXDcwjeJshZNVXPkAi9urm07xIgLihytT0WgUDyCMW73eg3M7qnOPHRuuM2v8z2sE"/>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border-2 border-primary-container/20">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="professional male emergency response coordinator portrait in studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkWle4kzTlnk32OcgjwfsZ4UhnkhQUHZS_wJOJR9mN_YM8tJvMcW9RY0WRwxn9brVFm1t3Hlc6StoVY6yuZbH8BmsgMxRN6QHejQzJH0JiEsc6vt1-p-K8v7hDhCpEUGqdyFvkGaTDofCiUJPx-3wGgs9spcgoGT6PybGVoYlCiKfQXslCtwzFlrRHyupwcsQBtE1Y3xVT-7qvormoC2qAbG7398HB9eqrw1H4o6V4N4hOY1ycwLNy1bkK6ZxKMscnNTlN0dOH7j-E"/>
+</div>
+</div>
+</header>
+<!-- Map Canvas Section -->
+<section class="flex-1 relative overflow-hidden bg-slate-200">
+<!-- Simulated High-Tech Map -->
+<div class="absolute inset-0 z-0">
+<img alt="Interactive Map" class="w-full h-full object-cover grayscale opacity-90 contrast-125" data-alt="high contrast dark satellite imagery of a modern coastal city with glowing blue data overlays and geometric grid patterns" data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtt1g3MDgAlxw04BC1mkGToT9t7mS5gQHOy7wySOiJ7BDwLHc1bWDHV85qGv_HX02kZ8C5yvIUfT4bERm49wk8fKjaiceBJNKnrMVuO3hJNoYpNADxvbn3SciJXOMnfJJ66-05GHS_O-45Tl8xf1txiJVYV4zQ5Inl-eKnn3J5XuoymlVFq4RQp0HmhA428R3nKSe7GTW5D5HjWZjp3eAUnQesc0Q3pqwzLr7MyMjt8wCDekjS7NyUa_Glg2uJ8E37CWusMnYvJZD5"/>
+<!-- Overlay Grid Texture -->
+<div class="absolute inset-0 bg-[radial-gradient(circle,transparent_20%,#f8f9fa_100%)] opacity-30"></div>
+</div>
+<!-- Floating Select Location Card (Center Initial State) -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+<div class="bg-surface-container-lowest p-1 rounded-full shadow-[0px_12px_32px_rgba(25,28,29,0.12)] flex items-center pr-6 group cursor-pointer hover:scale-105 transition-transform duration-300">
+<div class="h-12 w-12 bg-secondary rounded-full flex items-center justify-center text-white shadow-lg shadow-secondary/20">
+<span class="material-symbols-outlined fill-icon" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<span class="ml-4 font-headline font-bold text-primary text-lg">Select Location</span>
+</div>
+</div>
+<!-- Active Marker (Simulated Position) -->
+<div class="absolute top-[42%] left-[58%] z-10 group cursor-pointer">
+<div class="relative">
+<!-- Pulse Effect -->
+<div class="absolute -inset-4 bg-secondary/30 rounded-full animate-ping"></div>
+<div class="relative bg-secondary p-2 rounded-full border-2 border-white shadow-xl">
+<span class="material-symbols-outlined text-white text-xl fill-icon" data-icon="gps_fixed" style="font-variation-settings: 'FILL' 1;">gps_fixed</span>
+</div>
+</div>
+</div>
+<!-- Side Intelligence Panel (Coordinates Overlay) -->
+<div class="absolute right-8 top-8 bottom-8 w-96 bg-surface-container-lowest/90 backdrop-blur-xl rounded-2xl shadow-[0px_12px_32px_rgba(25,28,29,0.08)] z-20 flex flex-col border border-white/40 overflow-hidden">
+<div class="p-6 bg-primary text-white">
+<div class="flex items-center gap-2 mb-1">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<span class="text-[10px] uppercase font-bold tracking-[0.2em] opacity-80">Incident Prediction Zone</span>
+</div>
+<h2 class="font-headline font-extrabold text-2xl">Geospatial Data</h2>
+</div>
+<div class="flex-1 p-8 space-y-10">
+<!-- Coordinate Display -->
+<div class="space-y-6">
+<div class="group">
+<label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 group-hover:text-primary transition-colors">Latitude</label>
+<div class="flex items-end gap-3">
+<span class="font-headline font-extrabold text-4xl text-primary tracking-tight">37.7749</span>
+<span class="text-slate-400 font-medium mb-1.5">° N</span>
+</div>
+<div class="h-0.5 w-full bg-slate-100 mt-2 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[75%]"></div>
+</div>
+</div>
+<div class="group">
+<label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 group-hover:text-primary transition-colors">Longitude</label>
+<div class="flex items-end gap-3">
+<span class="font-headline font-extrabold text-4xl text-primary tracking-tight">122.4194</span>
+<span class="text-slate-400 font-medium mb-1.5">° W</span>
+</div>
+<div class="h-0.5 w-full bg-slate-100 mt-2 rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-[60%]"></div>
+</div>
+</div>
+</div>
+<!-- Meta Info Bento -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="cloud">cloud</span>
+<div class="text-xs text-slate-500 font-medium">Weather</div>
+<div class="font-bold text-primary">Clear Skies</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<span class="material-symbols-outlined text-primary mb-2" data-icon="terrain">terrain</span>
+<div class="text-xs text-slate-500 font-medium">Elevation</div>
+<div class="font-bold text-primary">16m ASL</div>
+</div>
+</div>
+<!-- Action Section -->
+<div class="pt-6 border-t border-slate-100">
+<p class="text-xs text-slate-500 leading-relaxed mb-6">
+                            Location locked at <span class="font-bold text-primary">District 4, South Bay</span>. AI prediction models are ready to analyze historical incident density and environmental factors for this sector.
+                        </p>
+<button class="w-full bg-primary py-4 rounded-xl text-white font-headline font-bold flex items-center justify-center gap-3 shadow-lg shadow-primary/20 hover:bg-primary-container transition-all active:scale-[0.98]">
+                            Proceed to AI Factors
+                            <span class="material-symbols-outlined text-lg" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Map Controls (Bottom Left) -->
+<div class="absolute left-8 bottom-8 flex flex-col gap-2 z-20">
+<div class="bg-surface-container-lowest shadow-lg rounded-xl flex flex-col overflow-hidden">
+<button class="p-3 hover:bg-slate-100 transition-colors border-b border-slate-100">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="p-3 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined" data-icon="remove">remove</span>
+</button>
+</div>
+<button class="bg-surface-container-lowest p-3 shadow-lg rounded-xl hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined" data-icon="my_location">my_location</span>
+</button>
+</div>
+<!-- Layer Toggle (Top Left) -->
+<div class="absolute left-8 top-8 z-20">
+<div class="bg-surface-container-lowest/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-white/50 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="layers">layers</span>
+<span class="text-xs font-bold text-primary uppercase tracking-tighter">Satellite Visualizer</span>
+<div class="h-4 w-[1px] bg-slate-300"></div>
+<span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Active Layer</span>
+</div>
+</div>
+</section>
+</main>
+</body></html>

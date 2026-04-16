@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ResQNow - AI Prediction Factor Input</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-container": "#c69b5f",
+                        "on-tertiary-fixed": "#291800",
+                        "on-background": "#191c1d",
+                        "background": "#f8f9fa",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed-dim": "#ffb4ac",
+                        "on-error": "#ffffff",
+                        "outline": "#74777f",
+                        "primary-container": "#1e3a5f",
+                        "on-surface-variant": "#43474e",
+                        "tertiary-fixed-dim": "#edbf7f",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-dim": "#d9dadb",
+                        "secondary": "#b7131a",
+                        "on-secondary-fixed": "#410002",
+                        "surface-variant": "#e1e3e4",
+                        "on-primary-container": "#8aa4cf",
+                        "tertiary-container": "#503300",
+                        "surface-container": "#edeeef",
+                        "primary-fixed-dim": "#adc8f5",
+                        "secondary-container": "#db322f",
+                        "inverse-primary": "#adc8f5",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#341f00",
+                        "on-surface": "#191c1d",
+                        "surface-container-low": "#f3f4f5",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#2d486d",
+                        "on-primary-fixed": "#001c3b",
+                        "secondary-fixed": "#ffdad6",
+                        "primary-fixed": "#d5e3ff",
+                        "on-secondary-fixed-variant": "#93000d",
+                        "outline-variant": "#c4c6cf",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#022448",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#ffddb2",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-tertiary-fixed-variant": "#60410c",
+                        "surface-tint": "#455f87",
+                        "on-secondary-container": "#fffbff",
+                        "inverse-surface": "#2e3132",
+                        "india-saffron": "#FF9933",
+                        "india-green": "#138808"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(30, 58, 95, 0.85);
+            backdrop-filter: blur(20px);
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #FF9933; /* Saffron Thumb */
+            cursor: pointer;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 0 4px rgba(255, 153, 51, 0.2);
+        }
+    </style>
+<link href="{{DATA:IMAGE:IMAGE_9}}" rel="icon" type="image/png"/></head>
+<body class="bg-surface font-body text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-slate-100 dark:bg-slate-950 flex flex-col py-6 z-50 border-r border-slate-200/50">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg flex items-center justify-center overflow-hidden border border-slate-200">
+<img alt="ResQNow Logo" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ugc9C9ZwZ1q-ZoE-E6rqCb0j7SRZmy6JENjq6ZWGkWlp0XfXyqr-Dh0xh8KOg3nfY351anIht4dSZWdcpzRYqkLhwSLwmmDkwp66iBDkdvh7W9PeE7SDxp3rQvomTg6olL3wD8GycxIT89_gIkYgGu27jCST8ZwUwA4geE9lUAYFLZgCY0on6EP2oU2HxFgU5l443HgDowE5gBXDcwjeJshZNVXPkAi9urm07xIgLihytT0WgUDyCMW73eg3M7qnOPHRuuM2v8z2sE"/>
+</div>
+<div>
+<h1 class="font-manrope font-bold text-[#1e3a5f] text-lg leading-tight">ResQNow</h1>
+<p class="text-[0.7rem] uppercase tracking-wider text-slate-500 font-semibold">Command Center</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-0">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 dark:text-slate-400 font-inter text-[0.875rem] font-medium hover:bg-slate-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-6 py-3 bg-white dark:bg-slate-900 text-[#022448] dark:text-white font-bold border-r-4 border-india-saffron rounded-l-none font-inter text-[0.875rem] transition-all duration-200 shadow-sm" href="#">
+<span class="material-symbols-outlined text-india-saffron" style="font-variation-settings: 'FILL' 1;">psychology</span>
+                        AI Prediction
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-600 dark:text-slate-400 font-inter text-[0.875rem] font-medium hover:bg-slate-200 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">info</span>
+                        About
+                    </a>
+</li>
+</ul>
+</nav>
+<div class="px-6 mb-4">
+<div class="flex items-center gap-2 px-3 py-2 bg-slate-200/50 rounded-lg">
+<div class="flex flex-col gap-0.5 w-4">
+<div class="h-1 bg-[#FF9933] rounded-sm"></div>
+<div class="h-1 bg-white rounded-sm border-[0.5px] border-slate-100"></div>
+<div class="h-1 bg-[#138808] rounded-sm"></div>
+</div>
+<span class="text-[0.65rem] font-bold text-slate-500 uppercase tracking-tighter">Made in India</span>
+</div>
+</div>
+<div class="px-6 mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 font-inter text-[0.875rem] font-medium hover:bg-slate-200 rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full h-16 sticky top-0 z-40 bg-slate-50/85 backdrop-blur-md dark:bg-slate-900/85 shadow-sm flex items-center justify-between px-8">
+<div class="flex items-center gap-4">
+<nav class="flex items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-india-green text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="text-slate-500 dark:text-slate-400 font-manrope text-sm font-semibold">Step 1: Location</span>
+</div>
+<div class="w-8 h-[2px] bg-slate-200"></div>
+<span class="text-[#022448] dark:text-blue-400 border-b-2 border-india-saffron font-manrope text-sm font-bold pb-1">Step 2: Factor Input</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden border-2 border-india-saffron/20">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVKdV0xp8843C9YyHSs6IwizO4LyMmOZNrwriH5iHt87AhJE1xjWw8sqMPMuWNK1i7Gtsed3VfFS9nGlH9QWWJHMoSE7LBG9ayDoZde8aljYm9qMTHUkhndJchiyP0wmausN-CKJXdBb6us7mC4DxlMUG-rpx25IgZKinCyre0_Fl3MnHjyGg-cANRvXsnE7xWiq7A1hVVS78UOv4GXPwreoBcDR-IdTuvXUMuFmsT3Yr1eK12BkIMhVQrhWNSxX-EeDjoyk_ech89"/>
+</div>
+</div>
+</header>
+<main class="p-8 max-w-6xl mx-auto w-full">
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-2">
+<span class="h-2 w-2 rounded-full bg-secondary shadow-[0_0_8px_rgba(183,19,26,0.6)]"></span>
+<h2 class="text-xs font-bold uppercase tracking-widest text-secondary">Advanced Neural Analysis</h2>
+</div>
+<h1 class="text-4xl font-headline font-extrabold text-primary tracking-tight">Factor Calibration</h1>
+<p class="text-on-surface-variant mt-2 max-w-2xl">Refine the environmental and contextual parameters to increase prediction accuracy for the selected zone.</p>
+</div>
+<form class="space-y-8">
+<!-- 2-Column Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Section 1: Zone & Location -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-slate-100">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-india-saffron">location_on</span>
+<h3 class="font-headline font-bold text-lg text-primary">Zone &amp; Location</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Latitude</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg text-slate-600 font-medium px-4 py-3 focus:ring-0 cursor-not-allowed" readonly="" type="text" value="34.0522"/>
+</div>
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Longitude</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg text-slate-600 font-medium px-4 py-3 focus:ring-0 cursor-not-allowed" readonly="" type="text" value="-118.2437"/>
+</div>
+<div class="col-span-2">
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Designated Response Zone</label>
+<div class="w-full bg-primary-container/5 rounded-lg border border-primary/10 px-4 py-3 flex items-center justify-between">
+<span class="font-bold text-primary">Zone Alpha-09 (Downtown Hub)</span>
+<span class="material-symbols-outlined text-india-green text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Time Settings -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-slate-100">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-india-saffron">schedule</span>
+<h3 class="font-headline font-bold text-lg text-primary">Temporal Factors</h3>
+</div>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-3">
+<label class="text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider">Prediction Hour (0-23)</label>
+<span class="bg-primary text-white text-xs font-bold px-2 py-1 rounded">14:00</span>
+</div>
+<input class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-india-saffron" max="23" min="0" type="range" value="14"/>
+<div class="flex justify-between mt-2 text-[10px] font-bold text-slate-400">
+<span>00:00</span>
+<span>12:00</span>
+<span>23:59</span>
+</div>
+</div>
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Day of Week</label>
+<select class="w-full border-none bg-surface-container-low rounded-lg text-primary font-semibold px-4 py-3 focus:ring-2 focus:ring-india-saffron/20 appearance-none">
+<option>Monday</option>
+<option>Tuesday</option>
+<option selected="">Wednesday</option>
+<option>Thursday</option>
+<option>Friday</option>
+<option>Saturday</option>
+<option>Sunday</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section 3: Environment -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-slate-100 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-india-saffron">thermostat</span>
+<h3 class="font-headline font-bold text-lg text-primary">Environmental Conditions</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Weather</label>
+<select class="w-full border-none bg-surface-container-low rounded-lg text-primary font-semibold px-4 py-3 focus:ring-2 focus:ring-india-saffron/20">
+<option selected="">Clear Sky</option>
+<option>Partly Cloudy</option>
+<option>Heavy Rain</option>
+<option>Fog / Mist</option>
+<option>Sleet / Snow</option>
+</select>
+</div>
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Lighting</label>
+<select class="w-full border-none bg-surface-container-low rounded-lg text-primary font-semibold px-4 py-3 focus:ring-2 focus:ring-india-saffron/20">
+<option selected="">Daylight</option>
+<option>Dawn / Dusk</option>
+<option>Dark (Lit)</option>
+<option>Dark (Unlit)</option>
+</select>
+</div>
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Visibility</label>
+<select class="w-full border-none bg-surface-container-low rounded-lg text-primary font-semibold px-4 py-3 focus:ring-2 focus:ring-india-saffron/20">
+<option selected="">High (&gt;10km)</option>
+<option>Medium (2-10km)</option>
+<option>Low (&lt;2km)</option>
+<option>Hazardous</option>
+</select>
+</div>
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Road Surface</label>
+<select class="w-full border-none bg-surface-container-low rounded-lg text-primary font-semibold px-4 py-3 focus:ring-2 focus:ring-india-saffron/20">
+<option selected="">Dry</option>
+<option>Wet / Slippery</option>
+<option>Icy / Frosty</option>
+<option>Flooded</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section 4: Traffic -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-slate-100">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-india-saffron">traffic</span>
+<h3 class="font-headline font-bold text-lg text-primary">Traffic Dynamics</h3>
+</div>
+<div class="space-y-6">
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Traffic Density</label>
+<select class="w-full border-none bg-surface-container-low rounded-lg text-primary font-semibold px-4 py-3 focus:ring-2 focus:ring-india-saffron/20">
+<option>Low (Free Flow)</option>
+<option selected="">Moderate (Active)</option>
+<option>High (Congested)</option>
+<option>Gridlock</option>
+</select>
+</div>
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Avg Speed Limit (km/h)</label>
+<div class="relative">
+<input class="w-full border-none bg-surface-container-low rounded-lg text-primary font-semibold px-4 py-3 focus:ring-2 focus:ring-india-saffron/20" type="number" value="65"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-[0.65rem] font-bold text-slate-400">KM/H</span>
+</div>
+</div>
+<div class="flex items-center gap-6 pt-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative inline-flex items-center">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-india-green"></div>
+</div>
+<span class="text-sm font-semibold text-slate-600 group-hover:text-india-green transition-colors">Active Construction</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-india-green"></div>
+</div>
+<span class="text-sm font-semibold text-slate-600 group-hover:text-india-green transition-colors">Curved Terrain</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Section 5: Risk & Special -->
+<section class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-slate-100 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-india-saffron">warning</span>
+<h3 class="font-headline font-bold text-lg text-primary">Risk &amp; Special Events</h3>
+</div>
+<div class="space-y-6">
+<div class="bg-primary/5 p-4 rounded-lg flex items-center justify-between">
+<div>
+<h4 class="text-sm font-bold text-primary">Active Festival/Mass Gathering</h4>
+<p class="text-xs text-slate-500">Includes sporting events and parades</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-india-green"></div>
+</label>
+</div>
+<div>
+<label class="block text-[0.75rem] font-bold text-slate-500 uppercase tracking-wider mb-1.5">Risk Trend Weighting</label>
+<select class="w-full border-none bg-surface-container-low rounded-lg text-primary font-semibold px-4 py-3 focus:ring-2 focus:ring-india-saffron/20">
+<option>Neutral (Historical Average)</option>
+<option selected="">Aggressive (Precautionary High)</option>
+<option>Conservative (Safe Zone)</option>
+</select>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-slate-100 flex items-center gap-4 text-sm text-on-surface-variant italic">
+<span class="material-symbols-outlined text-india-saffron">info</span>
+                            AI will prioritize recent incident clusters in the last 24 hours.
+                        </div>
+</section>
+</div>
+<!-- Bottom Action -->
+<div class="mt-12 flex items-center justify-between bg-surface-container-high p-8 rounded-2xl border-l-8 border-india-saffron shadow-md">
+<div class="flex flex-col">
+<span class="text-[0.65rem] font-bold uppercase tracking-widest text-slate-500">Ready to Process</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xs text-india-green" style="font-variation-settings: 'FILL' 1;">security</span>
+<span class="font-bold text-primary">All parameters validated for Step 2</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-4 bg-transparent text-primary font-bold hover:bg-slate-200/50 rounded-xl transition-all" type="button">
+                            Back
+                        </button>
+<button class="group relative inline-flex items-center gap-3 px-10 py-4 bg-primary text-white font-manrope font-bold rounded-xl overflow-hidden shadow-lg hover:shadow-india-saffron/30 transition-all active:scale-[0.98]" type="submit">
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-[#022448] to-india-green/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="relative z-10">Run AI Prediction</span>
+<span class="material-symbols-outlined relative z-10 group-hover:translate-x-1 transition-transform">bolt</span>
+</button>
+</div>
+</div>
+</form>
+</main>
+<!-- Footer Decoration -->
+<footer class="mt-auto p-8 border-t border-slate-100 flex flex-col items-center gap-4">
+<div class="flex items-center gap-3 px-4 py-1.5 bg-slate-50 border border-slate-200 rounded-full shadow-sm">
+<div class="flex items-center gap-1.5">
+<div class="flex flex-col gap-[1px] w-3">
+<div class="h-0.5 bg-india-saffron rounded-sm"></div>
+<div class="h-0.5 bg-white rounded-sm border-[0.2px] border-slate-100"></div>
+<div class="h-0.5 bg-india-green rounded-sm"></div>
+</div>
+<span class="text-[0.65rem] font-extrabold text-slate-600 tracking-tight">MADE IN INDIA</span>
+</div>
+</div>
+<div class="flex items-center gap-2 text-[0.7rem] font-bold text-slate-300 uppercase tracking-widest">
+<span>ResQNow Architecture</span>
+<span class="h-1 w-1 bg-slate-200 rounded-full"></span>
+<span>System 4.0.2-Stable</span>
+</div>
+</footer>
+</div>
+</body></html>

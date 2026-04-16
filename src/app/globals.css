@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-body;
+  }
+}
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.india-flag-icon {
+    display: inline-flex;
+    flex-direction: column;
+    width: 16px;
+    height: 12px;
+    border-radius: 1px;
+    overflow: hidden;
+    border: 0.5px solid rgba(0,0,0,0.1);
+}
+.flag-saffron { background: #FF9933; flex: 1; }
+.flag-white { background: #FFFFFF; flex: 1; position: relative; display: flex; align-items: center; justify-content: center; }
+.flag-green { background: #138808; flex: 1; }
+.ashoka-chakra { width: 4px; height: 4px; border-radius: 50%; border: 0.5px solid #000080; }
