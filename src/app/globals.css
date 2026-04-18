@@ -2,26 +2,218 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Base Resets ─────────────────────────────────────────────────────────── */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-surface text-on-surface font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Dark mode body background */
+  .dark body {
+    background-color: #020617; /* slate-950 */
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-outline-variant/50 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-india-saffron/60;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(196, 198, 207, 0.5) transparent;
   }
 }
 
+
+/* ─── Material Symbols ───────────────────────────────────────────────────── */
 .material-symbols-outlined {
-    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  transition: font-variation-settings 0.2s ease;
 }
 
+/* ─── India Flag Micro-icon ──────────────────────────────────────────────── */
 .india-flag-icon {
-    display: inline-flex;
-    flex-direction: column;
-    width: 16px;
-    height: 12px;
-    border-radius: 1px;
-    overflow: hidden;
-    border: 0.5px solid rgba(0,0,0,0.1);
+  display: inline-flex;
+  flex-direction: column;
+  width: 16px;
+  height: 12px;
+  border-radius: 1px;
+  overflow: hidden;
+  border: 0.5px solid rgba(0, 0, 0, 0.1);
 }
-.flag-saffron { background: #FF9933; flex: 1; }
-.flag-white { background: #FFFFFF; flex: 1; position: relative; display: flex; align-items: center; justify-content: center; }
-.flag-green { background: #138808; flex: 1; }
+.flag-saffron  { background: #FF9933; flex: 1; }
+.flag-white    { background: #FFFFFF; flex: 1; position: relative; display: flex; align-items: center; justify-content: center; }
+.flag-green    { background: #138808; flex: 1; }
 .ashoka-chakra { width: 4px; height: 4px; border-radius: 50%; border: 0.5px solid #000080; }
+
+/* ─── Keyframe Library ───────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0); }
+  50%       { box-shadow: 0 0 0 8px rgba(255, 153, 51, 0.15); }
+}
+@keyframes borderPulse {
+  0%, 100% { border-color: rgba(255, 153, 51, 0.3); }
+  50%       { border-color: rgba(255, 153, 51, 0.8); }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes sidebarIn {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Utility Animation Classes ──────────────────────────────────────────── */
+@layer utilities {
+  .animate-fade-in-up    { animation: fadeInUp    0.6s ease forwards; }
+  .animate-fade-in-down  { animation: fadeInDown  0.5s ease forwards; }
+  .animate-fade-in       { animation: fadeIn      0.5s ease forwards; }
+  .animate-slide-in-left { animation: slideInLeft 0.5s ease forwards; }
+  .animate-scale-in      { animation: scaleIn     0.4s ease forwards; }
+  .animate-float         { animation: floatUp     3s ease-in-out infinite; }
+  .animate-spin-slow     { animation: spin-slow   8s linear infinite; }
+  .animate-sidebar-in    { animation: sidebarIn   0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+  .animate-overlay-in   { animation: overlayIn   0.3s ease forwards; }
+
+  /* Stagger helpers (used with JS or CSS delay) */
+  .delay-75  { animation-delay: 75ms; }
+  .delay-150 { animation-delay: 150ms; }
+  .delay-225 { animation-delay: 225ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-375 { animation-delay: 375ms; }
+  .delay-450 { animation-delay: 450ms; }
+
+  /* Interactive lift */
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(2, 36, 72, 0.12);
+  }
+
+  /* Shimmer skeleton */
+  .shimmer {
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Glow pulse on saffron */
+  .glow-pulse { animation: pulseGlow 2.4s ease-in-out infinite; }
+
+  /* Smooth focus ring */
+  .focus-ring:focus {
+    outline: 2px solid rgba(255, 153, 51, 0.6);
+    outline-offset: 2px;
+  }
+
+  /* Card glass effect */
+  .glass {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* ripple on buttons */
+  .btn-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.25) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .btn-ripple:active::after { opacity: 1; }
+}
+
+/* ─── Page-level transition wrapper ─────────────────────────────────────── */
+.page-enter {
+  animation: fadeIn 0.35s ease forwards;
+}
+
+/* ─── Sidebar transition for mobile ─────────────────────────────────────── */
+.sidebar-mobile {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Leaflet Map Global Theming ─────────────────────────────────────── */
+.leaflet-container {
+  font-family: inherit;
+  z-index: 10;
+}
+.dark-popup .leaflet-popup-content-wrapper,
+.dark-popup .leaflet-popup-tip {
+  background: #0f172a; /* slate-900 */
+  color: #e2e8f0; /* slate-200 */
+  border: 1px solid rgba(255,153,51,0.2);
+  border-radius: 8px;
+}
+.dark-popup .leaflet-popup-content {
+  margin: 12px 16px;
+  line-height: 1.5;
+}
+.dark-popup a.leaflet-popup-close-button {
+  color: rgba(255, 255, 255, 0.5);
+  padding: 4px;
+}
+.dark-popup a.leaflet-popup-close-button:hover {
+  color: #FF9933;
+}
+
