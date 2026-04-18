@@ -4,17 +4,24 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Sidebar, TopBar } from '@/components/sidebar';
 import { useRouter } from 'next/navigation';
+import { Loader } from '@/components/Loader';
+import PredictWorkflow from '@/components/PredictWorkflow';
 
 interface UploadedFile {
   name: string;
   processed: boolean;
   timestamp: string;
+  id?: string;
 }
 
 export default function Dashboard() {
   const container = useRef<HTMLDivElement>(null);
   const mapImageRef = useRef<HTMLImageElement>(null);
   const [uploadedFile, setUploadedFile] = useState<UploadedFile | null>(null);
+  const [projectName, setProjectName] = useState('');
+  const [rawFile, setRawFile] = useState<File | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPredictWorkflow, setShowPredictWorkflow] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,7 +44,6 @@ export default function Dashboard() {
     const x = (e.clientX - left) / width;
     const y = (e.clientY - top) / height;
 
-    // Shift image in opposite direction of mouse movement to create "look around" effect
     gsap.to(mapImageRef.current, {
       xPercent: -(x - 0.5) * 40,
       yPercent: -(y - 0.5) * 40,
@@ -59,22 +65,58 @@ export default function Dashboard() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      setRawFile(file);
       const newFile: UploadedFile = {
         name: file.name,
         processed: false,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       };
       setUploadedFile(newFile);
+      // Auto-fill project name if empty
+      if (!projectName) {
+        setProjectName(file.name.replace('.csv', ''));
+      }
     }
   };
 
   const deleteFile = () => {
     setUploadedFile(null);
+    setRawFile(null);
   };
 
-  const processFile = () => {
-    if (uploadedFile) {
-      setUploadedFile({ ...uploadedFile, processed: true });
+  const processFile = async () => {
+    if (!rawFile || !uploadedFile) return;
+    
+    setIsLoading(true);
+    const formData = new FormData();
+    formData.append('file', rawFile);
+    formData.append('name', projectName || uploadedFile.name);
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/projects/upload', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: formData
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setUploadedFile({ ...uploadedFile, processed: true, id: data.project_id });
+        // Small delay to let the "Success" state breathe before showing the workflow prompt
+        setTimeout(() => {
+          setIsLoading(false);
+          setShowPredictWorkflow(true);
+        }, 800);
+      } else {
+        alert('Upload failed. Please check the file format and try again.');
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.error('Upload error:', error);
+      alert('Network error during upload.');
+      setIsLoading(false);
     }
   };
 
@@ -82,22 +124,14 @@ export default function Dashboard() {
     <div ref={container} className="bg-surface dark:bg-slate-950 text-on-surface dark:text-slate-200 min-h-screen">
       <Sidebar activePage="dashboard" />
 
-      {/* Content offset — sidebar is fixed so ml-64 shifts block content */}
       <div className="md:ml-64 flex flex-col min-h-screen">
         <TopBar title="Mission Control" />
 
-        {/*
-         * Single unified grid system:
-         * - All sections use the same 12-column grid with gap-6
-         * - Bento below: 8 cols + 4 cols = 12
-         * This ensures vertical column alignment across all rows.
-         */}
         <main className="flex-1 p-4 md:p-6 lg:p-8">
           <div className="max-w-7xl mx-auto w-full space-y-6 page-enter">
-            {/* ── Row 2: Bento Grid (same 12-col, same gap-6) ──────────── */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-              {/* Data Ingestion (col-span-8) */}
+              {/* Data Ingestion */}
               <section className="stagger-reveal lg:col-span-8">
                 <div className="bg-surface-container-lowest dark:bg-slate-900 rounded-2xl p-6 md:p-8 border-t-2 border-t-india-saffron/30"
                   style={{ boxShadow: '0 4px 20px rgba(2,36,72,0.08)' }}>
@@ -132,6 +166,24 @@ export default function Dashboard() {
                       onChange={handleFileChange}
                     />
                   </label>
+
+                  {uploadedFile && (
+                    <div className="mt-8 p-6 bg-slate-50 dark:bg-white/5 rounded-2xl border border-white/5 animate-fade-in group">
+                       <h4 className="text-[0.68rem] font-bold text-slate-500 uppercase tracking-widest mb-4">Project Configuration</h4>
+                       <div className="space-y-4">
+                          <div className="relative">
+                            <input 
+                              type="text"
+                              placeholder="Enter Strategic Project Name..."
+                              value={projectName}
+                              onChange={(e) => setProjectName(e.target.value)}
+                              className="w-full bg-surface dark:bg-slate-900 border border-slate-200 dark:border-white/10 p-4 rounded-xl text-sm font-bold text-primary dark:text-white focus:border-india-saffron outline-none transition-all pl-12"
+                            />
+                            <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-india-saffron">edit_note</span>
+                          </div>
+                       </div>
+                    </div>
+                  )}
 
                   <div className="mt-8 pt-6 border-t border-outline-variant/20 dark:border-slate-800">
                     <div className="flex items-center justify-between mb-4">
@@ -190,7 +242,7 @@ export default function Dashboard() {
                 </div>
               </section>
 
-              {/* Instructions + Map (col-span-4) */}
+              {/* Instructions + Map */}
               <section className="stagger-reveal lg:col-span-4 flex flex-col gap-6">
 
                 <div className="bg-primary text-white rounded-2xl p-6 relative overflow-hidden flex-shrink-0"
@@ -257,6 +309,17 @@ export default function Dashboard() {
           </div>
         </main>
       </div>
+
+      {/* Global Overlays */}
+      {isLoading && <Loader fullScreen message="Processing Strategic Dataset..." />}
+      
+      {showPredictWorkflow && uploadedFile && uploadedFile.id && (
+        <PredictWorkflow 
+          projectId={uploadedFile.id} 
+          projectName={uploadedFile.name}
+          onClose={() => setShowPredictWorkflow(false)}
+        />
+      )}
     </div>
   );
 }
