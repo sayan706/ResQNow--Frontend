@@ -216,34 +216,34 @@ export function TopBar({ title, children }: TopBarProps) {
             <span className="text-[0.65rem] font-bold text-india-green uppercase tracking-wider hidden sm:inline">Live</span>
           </div>
 
-          {/* Notifications */}
-          <button className="h-9 w-9 flex items-center justify-center text-on-surface-variant hover:bg-surface-container dark:hover:bg-slate-800 transition-colors rounded-full hover:text-india-saffron duration-200">
-            <span className="material-symbols-outlined text-[1.2rem]">notifications</span>
-          </button>
-
           {/* Mode Toggle */}
           <ModeToggle />
 
           <div className="w-px h-6 bg-slate-200 dark:bg-slate-700 mx-1 hidden sm:block" />
 
           {/* Avatar & Dropdown */}
-          <div className="relative flex items-center gap-2" ref={dropdownRef}>
+          <div className="relative flex items-center gap-2 group" ref={dropdownRef}>
             <div 
-              className="h-8 w-8 rounded-full overflow-hidden border-2 border-india-saffron/30 hover:border-india-saffron transition-colors duration-200 cursor-pointer flex-shrink-0"
+              className="h-9 w-9 rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-800 group-hover:border-india-saffron transition-all duration-300 cursor-pointer flex-shrink-0"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               <img
                 alt="User profile"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2erCX_OGMCP0EllWlPQX3Mlng_yDeIv4j94TFSeKU8mcumDGHHsm66DCNpFtW9ACwMN6PUnXf4G42wB_MfY5C0nuE-G8Fv1wMIUXFLIXlIlrbqJ4DTXN2qq75Bp8I-rSQahE1ARw2rGUesGfhhx1OQWj3icmZmiaLM1vjE1b_wN2Iidw_FnHFW1oX7yoq3OS7BxgMAHPDx9egOMNk4JAXhZb1DjQQKcUgh7Eod_HZafV5OmAamhjwMnzSkGNgtDQoCTyeXFQIXLWX"
               />
             </div>
-            <span 
-              className="font-headline text-sm font-semibold text-primary dark:text-blue-400 hidden sm:inline whitespace-nowrap cursor-pointer"
+            <div 
+              className="flex flex-col cursor-pointer"
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              {username}
-            </span>
+              <span className="font-headline text-xs font-black text-primary dark:text-white hidden sm:inline leading-none uppercase tracking-tighter">
+                Session Active
+              </span>
+              <span className="font-headline text-[0.85rem] font-bold text-slate-500 dark:text-blue-400 hidden sm:inline whitespace-nowrap leading-tight">
+                {username}
+              </span>
+            </div>
             
             {/* Context Dropdown Menu */}
             {dropdownOpen && (

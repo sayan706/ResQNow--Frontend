@@ -7,6 +7,7 @@ import { useGSAP } from '@gsap/react';
 import dynamic from 'next/dynamic';
 import { Sidebar, TopBar } from '@/components/sidebar';
 import { Loader } from '@/components/Loader';
+import Footer from '@/components/footer';
 import PredictionDetailOverlay from '@/components/PredictionDetailOverlay';
 import { buildMultiLayerMap } from '@/utils/mapBuilder';
 
@@ -555,6 +556,7 @@ export default function PredictFactorForm() {
             </div>
           </main>
         )}
+        <Footer />
       </div>
 
       {isFinalizing && predictionResult && (

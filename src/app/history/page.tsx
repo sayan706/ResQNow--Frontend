@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import { Sidebar, TopBar } from '@/components/sidebar';
 import { useRouter } from 'next/navigation';
 import { Loader } from '@/components/Loader';
+import Footer from '@/components/footer';
 import dynamic from 'next/dynamic';
 import PredictionDetailOverlay from '@/components/PredictionDetailOverlay';
 
@@ -213,6 +214,7 @@ export default function HistoryPage() {
 
           </div>
         </main>
+        <Footer />
       </div>
 
       {selectedProject && (

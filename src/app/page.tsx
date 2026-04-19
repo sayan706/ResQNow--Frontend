@@ -6,6 +6,7 @@ import { Sidebar, TopBar } from '@/components/sidebar';
 import { useRouter } from 'next/navigation';
 import { Loader } from '@/components/Loader';
 import PredictWorkflow from '@/components/PredictWorkflow';
+import Footer from '@/components/footer';
 
 interface UploadedFile {
   name: string;
@@ -308,6 +309,7 @@ export default function Dashboard() {
             </div>
           </div>
         </main>
+        <Footer />
       </div>
 
       {/* Global Overlays */}
