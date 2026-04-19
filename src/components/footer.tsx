@@ -27,7 +27,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
-              ResQNow is a next-generation emergency response platform powered by AI. 
+              ResQNow is a next-generation emergency response platform powered by AI.
               We provide real-time risk synthesis and tactical dispatch optimization for first responders.
             </p>
           </div>
@@ -48,21 +48,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Connect */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-black uppercase tracking-widest text-[#022448] dark:text-white">Company</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="text-sm text-slate-500 hover:text-india-saffron transition-colors">About Us</Link>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-india-saffron transition-colors">Privacy Policy</a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-slate-500 hover:text-india-saffron transition-colors">Terms of Service</a>
-              </li>
-            </ul>
-          </div>
+
         </div>
 
         {/* Bottom Bar */}
