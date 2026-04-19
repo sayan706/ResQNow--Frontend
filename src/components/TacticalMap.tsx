@@ -51,24 +51,28 @@ function buildMultiLayerMap(jsonData: any, title: string): string {
   if (!jsonData) return '';
   // Extract time_periods from any nested structure
   let timePeriods = jsonData.time_periods;
-  
-  // Case 1: Single Prediction Object (Flat)
-  if (!timePeriods && jsonData.risk_profile) {
-    const pred = jsonData;
+
+  // Case 1: Single Prediction Object (Flat) or Nested Prediction
+  const rootPred = jsonData.prediction || jsonData.data || jsonData;
+  if (!timePeriods && (rootPred.risk_profile || rootPred.severity_level || rootPred.risk_level)) {
+    const lat = rootPred.latitude || rootPred.lat || 22.5726;
+    const lng = rootPred.longitude || rootPred.lng || 88.3639;
+    
     timePeriods = {
       "Current Analysis": {
         "zones": [{
-          "centroid": [pred.latitude, pred.longitude],
-          "risk_level": pred.risk_profile?.level || 'High',
-          "zone_name": pred.zone_name || 'Analysis Hub'
+          "centroid": [lat, lng],
+          "risk_level": rootPred.risk_profile?.level || rootPred.severity_level || rootPred.risk_level || 'High',
+          "zone_name": rootPred.zone_name || 'Analysis Hub',
+          "directional_points": rootPred.directional_points || {}
         }],
-        "ambulances": []
+        "ambulances": rootPred.ambulances || rootPred.selected_ambulances || []
       }
     };
   }
   
   // Case 2: History Array
-  else if (!timePeriods && jsonData.prediction_history?.[0]?.risk_profile) {
+  else if (!timePeriods && jsonData.prediction_history?.[0]) {
     const pred = jsonData.prediction_history[0];
     timePeriods = {
       "History Point": {
@@ -82,7 +86,10 @@ function buildMultiLayerMap(jsonData: any, title: string): string {
     };
   }
 
-  if (!timePeriods) return '';
+  if (!timePeriods) {
+    console.warn("[Mapping Engine] No recognizable time_periods or risk_profile found in response:", jsonData);
+    return '';
+  }
 
   const periods = Object.keys(timePeriods);
   const getLL = (item: any): [number, number] | null => {

@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import dynamic from 'next/dynamic';
 import { Loader } from './Loader';
 import PredictionDetailOverlay from './PredictionDetailOverlay';
+import { buildMultiLayerMap } from '@/utils/mapBuilder';
 
 const LocationPickerMap = dynamic(() => import('./LocationPickerMap'), { ssr: false });
 const TacticalMap = dynamic(() => import('./TacticalMap'), { ssr: false });
@@ -30,7 +31,7 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
   const workflowRef = useRef<HTMLDivElement>(null);
 
   const [formData, setFormData] = useState<any>({
-    hour: new Date().getHours(),
+    hour: `${new Date().getHours().toString().padStart(2, '0')}:${new Date().getMinutes().toString().padStart(2, '0')}`,
     day_of_week: new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(new Date()),
     weather: 'clear',
     lighting_condition: 'daylight',
@@ -51,6 +52,10 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
   });
 
   const questions = [
+    // Temporal Context
+    { key: 'hour', label: 'Prediction Hub Time?', type: 'time', icon: 'schedule', group: 'Temporal' },
+    { key: 'day_of_week', label: 'Operational Day?', options: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'], icon: 'calendar_today', group: 'Temporal' },
+    
     // Environmental
     { key: 'weather', label: 'Current Weather?', options: ['clear', 'rainy', 'heavy rain', 'foggy', 'misty'], icon: 'cloud', group: 'Atmospheric' },
     { key: 'lighting_condition', label: 'Lighting Condition?', options: ['daylight', 'streetlights', 'dark_no_streetlights', 'dawn_dusk'], icon: 'light_mode', group: 'Atmospheric' },
@@ -110,6 +115,10 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
         },
         body: JSON.stringify({
           ...formData,
+          // If hour was selected via time picker, it might be HH:MM format, backend likely expects integer
+          hour: typeof formData.hour === 'string' && formData.hour.includes(':') 
+            ? parseInt(formData.hour.split(':')[0]) 
+            : formData.hour,
           latitude: coordinates?.lat,
           longitude: coordinates?.lng
         })
@@ -117,8 +126,18 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
       
       if (response.ok) {
         const data = await response.json();
-        setPredictionResult(data);
-        fetchProjectMapping(projectId); // Fetch full mapping context
+        // Enrich data with current session context to ensure UI doesn't show "Invalid Date" or empty coords
+        const enrichedData = {
+          ...data,
+          latitude: data.latitude || coordinates?.lat,
+          longitude: data.longitude || coordinates?.lng,
+          zone_name: data.zone_name || (coordinates 
+            ? `Target Hub (${coordinates.lat.toFixed(4)}, ${coordinates.lng.toFixed(4)})` 
+            : 'Target Hub'),
+          created_at: data.created_at || new Date().toISOString()
+        };
+        setPredictionResult(enrichedData);
+        fetchProjectMapping(projectId, 10, true); // Fetch full mapping context and expect V2
         setStage('RESULT');
       } else {
         throw new Error('Prediction failed');
@@ -130,7 +149,7 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
     }
   };
 
-  const fetchProjectMapping = async (id: string, retries = 10) => {
+  const fetchProjectMapping = async (id: string, retries = 10, expectV2 = false) => {
     setIsFetchingProject(true);
     try {
       const token = localStorage.getItem('token');
@@ -154,12 +173,13 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
 
       if (jsonUrl) {
          // VERSION PROTECTION: 
-         // If status says there's a v2 (or higher), but the provided URL is still v1, keep polling
-         const isWaitingForV2 = targetVersion > 1 && (jsonUrl.includes('/v1.json') || !jsonUrl.includes('/v2.json'));
+         // If we expect V2, we wait until the JSON URL includes 'v2' (case insensitive)
+         const isOutdated = expectV2 && !jsonUrl.toLowerCase().includes('v2');
+         const isWaitingForV2 = isOutdated || (targetVersion > 1 && !jsonUrl.toLowerCase().includes('v2'));
          
          if (isWaitingForV2 && retries > 0) {
-           console.log(`[Tactical] v${targetVersion} expected but URL is outdated. Retrying... (${retries})`);
-           setTimeout(() => fetchProjectMapping(id, retries - 1), 3000);
+           console.log(`[Tactical] v2 expected but URL is outdated (${jsonUrl}). Retrying... (${retries})`);
+           setTimeout(() => fetchProjectMapping(id, retries - 1, expectV2), 3000);
            return;
          }
 
@@ -173,7 +193,7 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
       }
 
       if (retries > 0) {
-        setTimeout(() => fetchProjectMapping(id, retries - 1), 3000);
+        setTimeout(() => fetchProjectMapping(id, retries - 1, expectV2), 3000);
       }
     } catch (e) {
       console.error('Error fetching project status:', e);
@@ -320,7 +340,25 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
               </div>
 
               <div className="grid grid-cols-2 gap-4">
-                {questions[currentQuestionIndex].type === 'boolean' ? (
+                {questions[currentQuestionIndex].type === 'time' ? (
+                   <div className="col-span-2 flex flex-col items-center gap-6 animate-fade-in">
+                     <div className="relative group w-full">
+                       <input 
+                         type="time" 
+                         value={formData[questions[currentQuestionIndex].key] || ''}
+                         onChange={(e) => setFormData({...formData, [questions[currentQuestionIndex].key]: e.target.value})}
+                         className="w-full bg-slate-50 dark:bg-white/5 border border-white/10 rounded-3xl p-8 text-4xl font-headline font-black text-center text-primary dark:text-white focus:ring-4 focus:ring-india-saffron/20 transition-all cursor-pointer outline-none"
+                       />
+                       <div className="absolute inset-0 pointer-events-none rounded-3xl border-2 border-transparent group-hover:border-india-saffron/30 transition-all" />
+                     </div>
+                     <button 
+                       onClick={nextQuestion}
+                       className="px-12 py-4 bg-primary text-white rounded-2xl font-black text-sm hover:shadow-xl transition-all active:scale-95"
+                     >
+                       Confirm Time & Proceed
+                     </button>
+                   </div>
+                ) : questions[currentQuestionIndex].type === 'boolean' ? (
                   <>
                     <button 
                       onClick={() => { setFormData({...formData, [questions[currentQuestionIndex].key]: true}); nextQuestion(); }}
@@ -357,6 +395,7 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
           </div>
         )}
 
+
         {stage === 'RESULT' && (
           <div className="h-full flex flex-col overflow-hidden">
             <div className="p-6 border-b border-white/5 flex justify-between items-center bg-slate-900/50">
@@ -364,12 +403,32 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
                  <h2 className="text-lg font-bold text-primary dark:text-white">Active Deployment Visualization</h2>
                  <p className="text-xs text-slate-500 font-black tracking-widest uppercase">Multi-period tactical map</p>
                </div>
-               <button 
-                onClick={onClose}
-                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all"
-               >
-                 <span className="material-symbols-outlined">close</span>
-               </button>
+               <div className="flex items-center gap-3">
+                 <button
+                   onClick={() => {
+                     const builtHtml = buildMultiLayerMap(getCombinedData(), projectName);
+                     const blob = new Blob([builtHtml], { type: 'text/html' });
+                     const url = URL.createObjectURL(blob);
+                     const a = document.createElement('a');
+                     a.href = url;
+                     a.download = `ResQNow_Map_${projectName.replace(/\s+/g, '_')}.html`;
+                     document.body.appendChild(a);
+                     a.click();
+                     document.body.removeChild(a);
+                     URL.revokeObjectURL(url);
+                   }}
+                   className="flex items-center gap-2 px-4 py-2 rounded-xl bg-india-green text-white hover:bg-india-green/90 transition-all text-[10px] font-black uppercase tracking-widest shadow-lg shadow-india-green/20"
+                 >
+                   <span className="material-symbols-outlined text-sm">download</span>
+                   Save HTML Map
+                 </button>
+                 <button 
+                  onClick={onClose}
+                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:text-white transition-all hover:rotate-90"
+                 >
+                   <span className="material-symbols-outlined">close</span>
+                 </button>
+               </div>
             </div>
             
             <div className="relative bg-black h-[600px] border-b border-white/10 overflow-hidden">
@@ -450,6 +509,13 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
         )}
 
       </div>
+
+      {isFinalizing && predictionResult && (
+        <PredictionDetailOverlay 
+          prediction={predictionResult}
+          onClose={() => setIsFinalizing(false)}
+        />
+      )}
     </div>
   );
 }

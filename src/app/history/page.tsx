@@ -177,7 +177,9 @@ export default function HistoryPage() {
                           <div className="space-y-1 mb-5">
                             <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400 text-[0.65rem]">
                               <span className="material-symbols-outlined text-sm">pin_drop</span>
-                              {pred.latitude.toFixed(4)}, {pred.longitude.toFixed(4)}
+                              {typeof pred.latitude === 'number' && typeof pred.longitude === 'number' 
+                                ? `${pred.latitude.toFixed(4)}, ${pred.longitude.toFixed(4)}`
+                                : 'Coordinates N/A'}
                             </div>
                             <div className="flex items-center gap-2 text-primary dark:text-white font-bold text-[0.7rem] uppercase tracking-wide">
                               <span className="material-symbols-outlined text-xs text-india-saffron">location_on</span>

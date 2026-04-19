@@ -21,19 +21,19 @@ export default function Login() {
       duration: 1.2,
       ease: 'power3.out',
     })
-    .from('.login-card', {
-      y: 60,
-      opacity: 0,
-      duration: 0.8,
-      ease: 'power3.out',
-    }, '-=0.8')
-    .from('.login-field', {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.09,
-      ease: 'power2.out',
-    }, '-=0.4');
+      .from('.login-card', {
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      }, '-=0.8')
+      .from('.login-field', {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.09,
+        ease: 'power2.out',
+      }, '-=0.4');
   }, { scope: container });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -111,7 +111,7 @@ export default function Login() {
             <img
               alt="ResQNow Logo"
               className="h-16 w-auto"
-              src="/logo.png"
+              src="/resq_logo_official.png"
             />
           </div>
           <p className="text-white/60 text-sm mt-1 tracking-wide">Emergency Command Center</p>
@@ -151,7 +151,7 @@ export default function Login() {
                 {error}
               </div>
             )}
-            
+
             {/* Email Input */}
             <div className="space-y-2 login-field">
               <label
@@ -233,18 +233,11 @@ export default function Login() {
 
             {/* Remember Me */}
             <div className="flex items-center space-x-3 login-field">
-              <div className="relative inline-flex items-center cursor-pointer">
+              {/* <div className="relative inline-flex items-center cursor-pointer">
                 <input className="sr-only peer" id="remember" type="checkbox" />
                 <div className="w-10 h-5 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-india-green transition-colors duration-300"
                   style={{ background: 'rgba(255,255,255,0.2)' }} />
-              </div>
-              <label
-                className="text-xs font-medium select-none"
-                style={{ color: 'rgba(255,255,255,0.55)' }}
-                htmlFor="remember"
-              >
-                Maintain session for 24 hours
-              </label>
+              </div> */}
             </div>
 
             {/* ── SIGN IN BUTTON ─────────────────────────────────────────── */}

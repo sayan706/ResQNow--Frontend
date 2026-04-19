@@ -23,19 +23,19 @@ export default function Register() {
       duration: 1.4,
       ease: 'power3.out',
     })
-    .from('.reg-card', {
-      y: 70,
-      opacity: 0,
-      duration: 0.9,
-      ease: 'power3.out',
-    }, '-=0.9')
-    .from('.reg-field', {
-      y: 20,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.08,
-      ease: 'power2.out',
-    }, '-=0.5');
+      .from('.reg-card', {
+        y: 70,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out',
+      }, '-=0.9')
+      .from('.reg-field', {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: 'power2.out',
+      }, '-=0.5');
   }, { scope: container });
 
   const getPasswordStrength = () => {
@@ -137,7 +137,7 @@ export default function Register() {
             <img
               alt="ResQNow Logo"
               className="h-16 w-auto"
-              src="/logo.png"
+              src="/resq_logo_official.png"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -179,7 +179,7 @@ export default function Register() {
                 {error}
               </div>
             )}
-            
+
             {/* Username */}
             <div className="space-y-2 reg-field">
               <label className="block text-sm font-bold" style={{ color: 'rgba(255,255,255,0.8)' }} htmlFor="username">
