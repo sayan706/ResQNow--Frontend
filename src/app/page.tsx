@@ -94,7 +94,7 @@ export default function Dashboard() {
     formData.append('name', projectName || uploadedFile.name);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/projects/upload', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/projects/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

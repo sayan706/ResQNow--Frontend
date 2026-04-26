@@ -107,7 +107,7 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
   const handleFinalSubmit = async () => {
     setStage('PROCESSING');
     try {
-      const response = await fetch(`http://127.0.0.1:8000/projects/${projectId}/predict`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/projects/${projectId}/predict`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ export default function PredictWorkflow({ projectId, projectName, onClose }: Pre
     setIsFetchingProject(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://127.0.0.1:8000/projects/${id}/status`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/projects/${id}/status`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (!res.ok) return;

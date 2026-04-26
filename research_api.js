@@ -5,7 +5,7 @@ async function testProjectFetch() {
     const projectId = 'bd6b4092-22cd-4adc-b97a-fffa812725b9'; // Example ID from logs
     
     try {
-        const res = await fetch(`http://127.0.0.1:8000/projects/${projectId}`, {
+        const res = await fetch(`https://api.freelanceflare.in/projects/${projectId}`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
