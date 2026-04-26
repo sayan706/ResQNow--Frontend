@@ -166,8 +166,7 @@ export default function PredictFactorForm() {
                     <div className="h-[450px] bg-slate-100 dark:bg-slate-950">
                        <LocationPickerMap 
                         onLocationSelect={handleLocationSelect} 
-                        initialLat={formData.latitude}
-                        initialLng={formData.longitude}
+                        initialPos={[formData.latitude, formData.longitude]}
                        />
                     </div>
                   </section>
